@@ -37,7 +37,10 @@ public class GlbModelService {
 		if (retrievedGlb.isPresent()) {
 			GlbModel glbUpdate = retrievedGlb.get();
 			glbUpdate.setModel(glb.getModel());
-			glbUpdate.setPinpoints(glb.getPinpoints());;
+			glbUpdate.setPinpoints(glb.getPinpoints());
+			for (Pinpoint pinpoint : glb.getPinpoints()) {
+		        pinpoint.setGlbModel(glbUpdate);
+		    }
 			db.save(glbUpdate);
 			return glbUpdate;
 		} else {
